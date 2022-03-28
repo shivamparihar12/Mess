@@ -150,7 +150,7 @@ public class MessInfoAdapter extends RecyclerView.Adapter {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static String getWeekDayName(String s) {
         DateTimeFormatter dtfInput = DateTimeFormatter.ofPattern("u-M-d", Locale.ENGLISH);
-        DateTimeFormatter dtfOutput = DateTimeFormatter.ofPattern("EEEE, d MMM, yyyy", Locale.ENGLISH);
+        DateTimeFormatter dtfOutput = DateTimeFormatter.ofPattern("EEE, d MMM, yyyy", Locale.ENGLISH);
         return LocalDate.parse(s, dtfInput).format(dtfOutput);
     }
 }
