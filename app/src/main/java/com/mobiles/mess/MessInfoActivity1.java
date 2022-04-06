@@ -70,8 +70,8 @@ public class MessInfoActivity1 extends AppCompatActivity {
     public void getSevenDayData(String actualCurrentDate) {
         for (int i = 7; i >= 0; i--) {
             binding.progressCircular.setVisibility(View.VISIBLE);
-            //LocalDate date = LocalDate.parse("2022-03-07");
-            LocalDate date = LocalDate.parse(actualCurrentDate);
+            LocalDate date = LocalDate.parse("2022-03-07");
+            //LocalDate date = LocalDate.parse(actualCurrentDate);
             LocalDate currentDate = date.minusDays(i);
             getOneDayData(String.valueOf(currentDate), currentHostelID);
             binding.progressCircular.setVisibility(View.GONE);

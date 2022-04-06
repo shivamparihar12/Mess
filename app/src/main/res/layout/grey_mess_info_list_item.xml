@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -25,7 +26,8 @@
 
     <TextView
         android:id="@+id/breakfast_item"
-        android:layout_width="wrap_content"
+        tools:text="1223"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_weight="@integer/material_motion_duration_long_1"
@@ -33,7 +35,8 @@
 
     <TextView
         android:id="@+id/lunch_item"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        tools:text="1223"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_weight="@integer/material_motion_duration_long_1"
@@ -41,16 +44,18 @@
 
     <TextView
         android:id="@+id/dinner_item"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        tools:text="1223"
         android:layout_gravity="center"
         android:layout_weight="@integer/material_motion_duration_long_1"
         android:gravity="center" />
 
     <TextView
         android:id="@+id/onLeaves_item"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        tools:text="1223"
         android:layout_gravity="center"
         android:layout_weight="@integer/material_motion_duration_long_1"
         android:gravity="center" />
