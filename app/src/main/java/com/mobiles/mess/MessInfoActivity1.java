@@ -158,6 +158,7 @@ public class MessInfoActivity1 extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.mess_menu, menu);
+//        menu.add(0,0,0,menu)
         return true;
     }
 
