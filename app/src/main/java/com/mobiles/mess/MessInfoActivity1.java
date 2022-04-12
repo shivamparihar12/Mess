@@ -38,6 +38,7 @@ public class MessInfoActivity1 extends AppCompatActivity {
     private ActivityMessInfo1Binding binding;
     private String currentHostelID;
     private ArrayList<OneDayData> oneDayDataArrayList;
+    boolean runanotherloop=false;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -77,7 +78,20 @@ public class MessInfoActivity1 extends AppCompatActivity {
             Log.d("currentDate",String.valueOf(currentDate));
             getOneDayData(String.valueOf(currentDate), currentHostelID);
             binding.progressCircular.setVisibility(View.GONE);
+            if (i==0){
+                for (int j = 1; j <=14; j++) {
+                    binding.progressCircular.setVisibility(View.VISIBLE);
+                    //LocalDate date = LocalDate.parse("2022-03-07");
+//                    Log.d("Actualdate",actualCurrentDate);
+//                    LocalDate date = LocalDate.parse(actualCurrentDate);
+                     LocalDate currentDateNew = date.plusDays(j);
+                    Log.d("currentDateNew",String.valueOf(currentDateNew));
 
+                    getOneDayData(String.valueOf(currentDateNew), currentHostelID);
+                    binding.progressCircular.setVisibility(View.GONE);
+
+                }
+            }
         }
     }
 
@@ -92,7 +106,7 @@ public class MessInfoActivity1 extends AppCompatActivity {
                 oneDayDataArrayList.add(dayData);
                 Log.d("checking", dayData.getBreakfast());
 
-                if (oneDayDataArrayList.size() == 8) {
+                if (oneDayDataArrayList.size() == 21) {
                     oneDayDataArrayList.sort(new Comparator<OneDayData>() {
                         @Override
                         public int compare(OneDayData oneDayData, OneDayData t1) {
@@ -111,6 +125,8 @@ public class MessInfoActivity1 extends AppCompatActivity {
                     for (int i = 0; i < 7; i++) {
                         Log.d("1checking", oneDayDataArrayList.get(i).getCurrentDate());
                     }
+
+                    runanotherloop=true;
                 }
             }
 
