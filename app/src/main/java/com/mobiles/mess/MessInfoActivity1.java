@@ -71,8 +71,10 @@ public class MessInfoActivity1 extends AppCompatActivity {
         for (int i = 7; i >= 0; i--) {
             binding.progressCircular.setVisibility(View.VISIBLE);
             //LocalDate date = LocalDate.parse("2022-03-07");
+            Log.d("Actualdate",actualCurrentDate);
             LocalDate date = LocalDate.parse(actualCurrentDate);
             LocalDate currentDate = date.minusDays(i);
+            Log.d("currentDate",String.valueOf(currentDate));
             getOneDayData(String.valueOf(currentDate), currentHostelID);
             binding.progressCircular.setVisibility(View.GONE);
 
@@ -82,6 +84,7 @@ public class MessInfoActivity1 extends AppCompatActivity {
     public void getOneDayData(String currentDate, String currentHostelID) {
         Call<ArrayList<OneDayData>> oneDayDataCall = RetrofitClient.getService().getOneDayData("'" + currentDate + "'", currentHostelID);
         oneDayDataCall.enqueue(new Callback<ArrayList<OneDayData>>() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onResponse(Call<ArrayList<OneDayData>> call, Response<ArrayList<OneDayData>> response) {
                 ArrayList<OneDayData> oneDayData = response.body();
@@ -90,19 +93,23 @@ public class MessInfoActivity1 extends AppCompatActivity {
                 Log.d("checking", dayData.getBreakfast());
 
                 if (oneDayDataArrayList.size() == 8) {
-                    Collections.sort(oneDayDataArrayList, new Comparator<OneDayData>() {
+                    oneDayDataArrayList.sort(new Comparator<OneDayData>() {
                         @Override
                         public int compare(OneDayData oneDayData, OneDayData t1) {
-                            return oneDayData.getTimestamp().compareTo(t1.getTimestamp());
+                            return oneDayData.getCurrentDate().compareTo(t1.getCurrentDate());
                         }
                     });
+
+                    //sort(oneDayDataArrayList);
+
+
 
                     MessInfoAdapter messInfoAdapter = new MessInfoAdapter(oneDayDataArrayList, getApplicationContext(), getCurrentDate());
                     binding.recyclerView.setAdapter(messInfoAdapter);
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
                     binding.recyclerView.setLayoutManager(linearLayoutManager);
                     for (int i = 0; i < 7; i++) {
-                        Log.d("1checking", oneDayDataArrayList.get(i).getBreakfast());
+                        Log.d("1checking", oneDayDataArrayList.get(i).getCurrentDate());
                     }
                 }
             }
@@ -151,5 +158,6 @@ public class MessInfoActivity1 extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 
 }
